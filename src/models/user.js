@@ -45,6 +45,23 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    handles: [
+      {
+        handle: {
+          key: { type: String },
+          val: { type: String },
+        },
+      },
+    ],
+    events: [
+      {
+        id: { type: String },
+        completed: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
     tokens: [
       {
         token: {

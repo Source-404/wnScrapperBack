@@ -30,6 +30,22 @@ router.get("/allevents", async (req, res) => {
   );
 });
 
+router.get("/someevents", async (req, res) => {
+  const client = await mongodb.connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+  });
+  const db = client.db("test");
+  const collection = db.collection("events");
+
+  const ids = req.body.ids;
+  const events = await collection
+    .find({ _id: { $in: ids.map((id) => mongodb.ObjectId(id)) } })
+    .toArray();
+
+  client.close();
+  res.json(events);
+});
+
 router.get("/event/:id", (req, res) => {
   const id = req.params.id;
 
