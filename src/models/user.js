@@ -47,10 +47,8 @@ const userSchema = new mongoose.Schema(
     },
     handles: [
       {
-        handle: {
-          key: { type: String },
-          val: { type: String },
-        },
+        key: String,
+        val: String,
       },
     ],
     events: [
